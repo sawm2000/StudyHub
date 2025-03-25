@@ -5,8 +5,9 @@ const bodyParser = require("body-parser");
 const app = express();
 const cors = require("cors");
 const authRoutes = require("./Routes/auth.routes");
-const studyRoomRoutes = require("./Routes/studyRoom.routes")
-const messageRoutes = require("./Routes/message.routes")
+const studyRoomRoutes = require("./Routes/studyRoom.routes");
+const messageRoutes = require("./Routes/message.routes");
+const userRoutes = require("./Routes/users.routes");
 
 app.use(cors());
 const uri = process.env.DB_URL;
@@ -15,31 +16,30 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 async function connect() {
-    try {
-      await mongoose.connect(uri);
-      console.log("Connected to MongoDB");
-    } catch (error) {
-      console.log(error);
-    }
+  try {
+    await mongoose.connect(uri);
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.log(error);
   }
-  connect();
-  app.use(express.json());
-  app.use("/", authRoutes);
-  app.use("/room", studyRoomRoutes)
-  app.use("/message", messageRoutes)
+}
+connect();
+app.use(express.json());
+app.use("/", authRoutes);
+app.use("/room", studyRoomRoutes);
+app.use("/message", messageRoutes);
+app.use("/user", userRoutes);
 
+app.use((err, req, res, next) => {
+  const status = err.status || 500;
+  const message = err.message || "Something went wrong!";
+  return res.status(status).json({
+    success: false,
+    status,
+    message,
+  });
+});
 
-  app.use((err, req, res, next) => {
-    const status = err.status || 500;
-    const message = err.message || "Something went wrong!";
-    return res.status(status).json({
-      success: false,
-      status,
-      message,
-    });
-  });
-  
-  app.listen("8000", () => {
-    console.log("server started on 8000");
-  });
-  
+app.listen("8000", () => {
+  console.log("server started on 8000");
+});
