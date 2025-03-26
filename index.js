@@ -8,6 +8,7 @@ const authRoutes = require("./Routes/auth.routes");
 const studyRoomRoutes = require("./Routes/studyRoom.routes");
 const messageRoutes = require("./Routes/message.routes");
 const userRoutes = require("./Routes/users.routes");
+const videoRoutes = require("./Routes/video.routes")
 
 app.use(cors());
 const uri = process.env.DB_URL;
@@ -29,6 +30,7 @@ app.use("/", authRoutes);
 app.use("/room", studyRoomRoutes);
 app.use("/message", messageRoutes);
 app.use("/user", userRoutes);
+app.use("/video", videoRoutes)
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;
