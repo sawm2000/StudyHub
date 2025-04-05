@@ -3,8 +3,8 @@ const router = express.Router();
 const {
   getUser,
   getAllUsers,
-  update,
   deleteUser,
+  updateUser,
 } = require("../Controllers/user.controller");
 
 // Get a user
@@ -14,7 +14,7 @@ router.get("/:id", getUser);
 router.get("/", getAllUsers);
 
 // Update user
-router.put("/:id", update);
+router.put("/:id", updateUser);
 
 // Delete user
 router.delete("/:id", deleteUser);

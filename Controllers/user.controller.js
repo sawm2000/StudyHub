@@ -21,7 +21,7 @@ const getUser = async (req, res, next) => {
     }
   };
 
-const update = async (req, res, next) => {
+const updateUser = async (req, res, next) => {
     try {
       const userExists = await User.findOne({ username: req.body.username });
       if (userExists) {
@@ -60,4 +60,4 @@ const update = async (req, res, next) => {
     }
   };
 
-  module.exports = { getUser, deleteUser, update, getAllUsers };
+  module.exports = { getUser, deleteUser, updateUser, getAllUsers };
