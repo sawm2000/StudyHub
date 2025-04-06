@@ -9,6 +9,7 @@ const studyRoomRoutes = require("./Routes/studyRoom.routes");
 const messageRoutes = require("./Routes/message.routes");
 const userRoutes = require("./Routes/users.routes");
 const videoRoutes = require("./Routes/video.routes")
+const path = require("path");
 
 app.use(cors());
 const uri = process.env.DB_URL;
