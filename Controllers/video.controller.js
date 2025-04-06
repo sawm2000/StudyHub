@@ -4,7 +4,7 @@ const createError = require("../error");
 
 const addVideo = async (req, res, next) => {
   try {
-    const { title, description, tags, url } = req.body;
+    const { title, description, tags, fileUrl } = req.body;
     const user = await User.findById(req.params.id);
     if (!user) return next(createError(404, "User not found!"));
 
@@ -12,7 +12,7 @@ const addVideo = async (req, res, next) => {
       title,
       description,
       tags: tags.split(",").map((tag) => tag.trim()),
-      url,
+      fileUrl,
       owner: user._id,
     });
 
