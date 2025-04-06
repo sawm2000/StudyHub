@@ -22,7 +22,7 @@ Ensure you have the following installed on your machine:
 - Node.js
 - npm
 - MongoDB
-- 
+  
 ## Environment Variables
 
 Create a `.env` file in the root directory of your project with the following variables:
@@ -39,13 +39,13 @@ JWT=your_jwt_secret_key_here
 #### Clone the Repository
 
 ```bash
-git clone https://github.com/sawm2000/studyHub.git
+git clone https://github.com/sawm2000/StudyHub.git
 ```
 
 #### Navigate to the project directory
 
 ```bash
-cd studyHub
+cd StudyHub
 ```
 
 #### Install Dependencies
