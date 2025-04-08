@@ -72,9 +72,7 @@ const likeVideo = async (req, res, next) => {
     const video = await Video.findById(req.body.vid);
     if (!video) return next(createError(404, "Video not found!"));
 
-    if (
-      video.likes.some((like) => like.user.toString() === user._id.toString())
-    ) {
+    if (video.likes.includes(user._id)) {
       return next(createError(400, "You have already liked this video"));
     }
 
@@ -95,9 +93,7 @@ const unlikeVideo = async (req, res, next) => {
     const video = await Video.findById(req.body.vid);
     if (!video) return next(createError(404, "Video not found!"));
 
-    const likeIndex = video.likes.findIndex(
-      (like) => like.user.toString() === user._id.toString()
-    );
+    const likeIndex = video.likes.indexOf(user._id);
     if (likeIndex === -1) {
       return next(createError(400, "You have not liked this video"));
     }
