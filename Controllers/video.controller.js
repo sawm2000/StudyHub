@@ -173,7 +173,6 @@ const deleteComment = async (req, res, next) => {
 const getComments = async (req, res, next) => {
   try {
     const video = await Video.findById(req.params.id)
-    .populate("comments.user", "username");
     if (!video) return next(createError(404, "Video not found!"));
 
     res.status(200).json({ comments: video.comments });
