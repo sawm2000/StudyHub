@@ -121,6 +121,7 @@ const commentVideo = async (req, res, next) => {
 
     const newComment = {
       user: user._id,
+      username: user.username,
       text: text,
       createdAt: Date.now(),
     };
